@@ -2,6 +2,24 @@
 This repo explain how to generate 3D scene of table tennis points.
 To create this scene, we used the API of Blender bpy. We provided a script to create scene with the table, players and ball position for each frame and the camera. We also provided a script to create a video of the point generated in the 3D scene.  
 
+## How to cite
+
+> Aymeric Erades & Romain Vuillemot (2025). « Player-Centric Shot Maps in Table Tennis ». Computer graphics Forum (Proc. Eurovis), p. 10.
+
+```
+@article{erades:hal-04997867,
+  TITLE = {{Player-Centric Shot Maps in Table Tennis}},
+  AUTHOR = {Erades, Aymeric and Vuillemot, Romain},
+  URL = {https://hal.science/hal-04997867},
+  JOURNAL = {{Computer graphics Forum (Proc. Eurovis)}},
+  PAGES = {10},
+  YEAR = {2025},
+  MONTH = Jun,
+  HAL_ID = {hal-04997867},
+  HAL_VERSION = {v1},
+}
+```
+
 ## Steps
 ### 1. Install
 - Download MMPose https://github.com/open-mmlab/mmpose
