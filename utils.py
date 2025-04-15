@@ -7,21 +7,18 @@ import pandas as pd
 
 
 def create_json_camera(name_output_csv,focale,centre_optique,distorsion_k1,distorsion_k2,distorsion_k3,position,rotation):
-    """
-        Fonction permettant de créer un json contenant les informations sur la caméra
-        Entrée:
-                - Le dossier du match
-                - La focale
-                - Le centre optique (taille: 2)
-                - La distorsion K1
-                - La distorsion K2
-                - La distorsion K3
-                - La position de la caméra
-                - La rotation de la caméra
-        Sortie:
-                - Création d'un fichier json "_camera.json"
-    """
+    """Function used to create json file with cam params
 
+    Args:
+        name_output_csv (str): Output path
+        focale (float): Focal length
+        centre_optique (float): Optical center
+        distorsion_k1 (float): Distorsion K1
+        distorsion_k2 (float): Distorsion K2
+        distorsion_k3 (float): Distorsion K3
+        position ((int,int,int)): Location
+        rotation ((float,float,float)): Rotation
+    """
 
     donnees = {}
 
@@ -41,13 +38,15 @@ def create_json_camera(name_output_csv,focale,centre_optique,distorsion_k1,disto
     with open(name_output_csv, "w") as json_file:
         json.dump(donnees, json_file, indent=4)
 
-def creation_csv_position_joueur_grace_pieds(csv_position):
+
+def create_csv_position_using_feet(csv_position):
     """
-        Fonction permettant de créer un csv des positions à l'aide de la position des pieds qui a été projetée
-        Entrée:
-                - Le chemin csv de position
-        Sortie:
-                - Création du csv (_position_joueur_grace_pieds.csv)
+        Function used to create csv file of players' positions, using the projection of the players' feet from 2d pose estimation to 3d scene
+        
+        Args:
+                - Csv file of players' pose estimation
+        Returns:
+                - Create csv file (_position_joueur_grace_pieds.csv)
     """
 
 
@@ -73,15 +72,13 @@ def creation_csv_position_joueur_grace_pieds(csv_position):
             fichier_csv_writer.writerow(row)
 
 
-def reatribution_joueurs_grace_pieds(csv_position_pieds):
+def match_players_feet(csv_position_pieds):
     """
-        Fonction peremttant de trouver et de réattribuer le numéro des joueurs à l'aide du fichier de position initialement calculé avec la position du bassin
-        Attention:
-                - Pour du simple uniquement 
-        Entrée:
-                - Le chemin du fichier de position calculé avec les pieds
-        Sortie:
-                - Création du csv de position avec joueurs "_position_joueur_grace_pieds_ordonne.csv"
+        Function used to match players' number from csv file "_zone_joueur_avec_pos_balle.csv" already generated using feet position
+        Args:
+                - Csv "_position_joueur_grace_pieds.csv" path
+        Returns :
+                - Create csv players' position
     """
     csv_position = csv_position_pieds.replace("_position_joueur_grace_pieds.csv","_zone_joueur_avec_pos_balle.csv")
 
@@ -128,12 +125,12 @@ def reatribution_joueurs_grace_pieds(csv_position_pieds):
 
 def create_csv_new_ref(csv_enrichi,csv_position):
     """
-        Fonction permettant de créer un csv enrichi avec les données pour le nouveau référentiel
-        Entrée:
-                - Le chemin csv de position
-                - Le chemin du csv avec les positions
-        Sortie:
-                - Création du csv (_enrichi_new_ref.csv)
+        Function used to create enhanced annotation csv file with new referentiel data 
+        Args:
+                - enhanced annotation csv file path
+                - Csv position file
+        Return:
+                - Create csv (_enrichi_new_ref.csv)
     """
 
     fichier_lecture = open(csv_enrichi,"r")
@@ -188,20 +185,20 @@ def create_csv_new_ref(csv_enrichi,csv_position):
 
 
 
-def creation_csv_enrichi_avec_pieds(csv_annotation_enrichi):
+def create_enhanced_csv_with_feet(csv_annotation_enrichi):
     """
-        Fonction permettant de rajouter 6 colonnes au csv_annotation_enrichi
-        Les colonnes rajoutées:
+        Function used to add 6 columns to "_csv_annotation_enrichi.csv" file
+        Columns added:
             - pos_pied_jA_x
             - pos_pied_jA_y
             - pos_pied_jA_z
             - pos_pied_jB_x
             - pos_pied_jB_y
             - pos_pied_jB_z
-        Entrée:
-                - Le chemin du csv annotation enrichi
-        Sortie:
-                - Création csv "_annotation_enrichi_pos_pieds.csv
+        Args:
+                - enhanced annotation csv file path
+        Returns:
+                - Create csv file "_annotation_enrichi_pos_pieds.csv"
     """
 
     fichier_lecture = open(csv_annotation_enrichi,"r")
@@ -259,15 +256,3 @@ def creation_csv_enrichi_avec_pieds(csv_annotation_enrichi):
             row2.append(liste_positions_j2[int(row[21])][4])
             new_l.append(row[2])
         
-
-
-        """for row in liste:
-            if 3,20
-
-
-        liste_cvs_clip.append(pos_x_j1)
-        liste_cvs_clip.append(pos_y_j1)
-        liste_cvs_clip.append(pos_z_j1)
-        liste_cvs_clip.append(pos_x_j2)
-        liste_cvs_clip.append(pos_y_j2)
-        liste_cvs_clip.append(pos_z_j2)"""

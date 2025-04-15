@@ -4,21 +4,20 @@ import csv
 import numpy as np
 
 
-def lancer_mmpose_sur_video(video_path,name_output_csv):
+def create_mmpose_files(video_path):
     """
-        Fonction permettant d'executer mmpose3d et 2d et de créer deux fichiers csv avec les données obtenues
-        Entrée:
-                - Le chemin de la vidéo
-        Sortie:
-                - Création du fichier csv dans le dossier "csv_json_openpose" du dossier de la vidéo avec l'extention "_pose_3d_mmpose.csv" 
+        Use mmpose3d and 2d to create 2 csv files (one with 2d pose and one with 3d pose)
+        Args:
+                - Video path
+        Returns:
+                - Create csv file  (video_path.replace(".mp4","_pose_3d_mmpose.csv"))
                     (format: ["frame","numero_pers","joint","x","y","z","tracking"])
-                - Création du fichier csv dans le dossier "csv_json_openpose" du dossier de la vidéo avec l'extention "_pose_2d_mmpose.csv" 
-                    (format: ["frame","numero_pers","joint","x","y","tracking"])
+                - Create csv file  (video_path.replace(".mp4","_pose_2d_mmpose.csv"))
+                    (format: ["frame","numero_pers","joint","x","y","z","tracking"])
     """
 
     inferencer = MMPoseInferencer('human')
 
-    #video_path = os.path.join("C:/Users/ReViVD/Desktop/dataroom/pipeline-tt/2024_ChMondeEquipe_Busan/FAN-ZHENDONG_vs_ALEXIS-LEBRUN/clips/set_1_point_0/set_1_point_0.mp4")
     result_generator = inferencer(video_path, show=False)#, pred_out_dir='pred_out_dir')
     #result = next(result_generator)
     results = [result for result in result_generator]
@@ -40,7 +39,7 @@ def lancer_mmpose_sur_video(video_path,name_output_csv):
                 sous_liste.append(liste_tracking_json[i][j])
                 liste_pose.append(sous_liste)
 
-    nom_csv = os.path.join(os.path.split(video_path)[0],"csv_json_openpose",os.path.split(video_path)[1].replace(".mp4","_pose_2d_mmpose.csv"))
+    nom_csv = os.path.join(os.path.split(video_path)[0],os.path.split(video_path)[1].replace(".mp4","_pose_2d_mmpose.csv"))
     
     with open(nom_csv,"w", newline='') as fichier_csv:
         fichier_csv_writer = csv.writer(fichier_csv, delimiter=',')
@@ -74,8 +73,9 @@ def lancer_mmpose_sur_video(video_path,name_output_csv):
                 sous_liste.append(liste_tracking_json[i][j])
                 liste_pose.append(sous_liste)
 
+    nom_csv = os.path.join(os.path.split(video_path)[0],os.path.split(video_path)[1].replace(".mp4","_pose_3d_mmpose.csv"))
     
-    with open(name_output_csv,"w", newline='') as fichier_csv:
+    with open(nom_csv,"w", newline='') as fichier_csv:
         fichier_csv_writer = csv.writer(fichier_csv, delimiter=',')
         fichier_csv_writer.writerow(en_tete)
         for row in liste_pose:
@@ -84,7 +84,8 @@ def lancer_mmpose_sur_video(video_path,name_output_csv):
     
 def openpose_json2list_tracking(results): 
     '''
-        Fonction permettant de faire le tracking à l'aide des données de mmpose dans la fonction lancer_mmpose_sur_video()
+        Functino use to add tracking to mmpose files created with create_mmpose_files()
+        The tracking use player keypoints to compute minimum distance between to consecutive frames
     ''' 
     liste_sortie = []
     val_precedente = []
@@ -107,13 +108,13 @@ def openpose_json2list_tracking(results):
                     y = 0
                     nb_points = 1
                     for j in range(0,len(data_keypoints)):
-                        if ((data_keypoints[j][0] != 0) and (val_precedente[k][j][0] != 0)):  #pour retirer les cas où openpose ne détecte pas un point car il le met à (0,0) et ça fausse tout
+                        if ((data_keypoints[j][0] != 0) and (val_precedente[k][j][0] != 0)):  
                             x += abs(data_keypoints[j][0] - val_precedente[k][j][0])
                             y += abs(data_keypoints[j][1] - val_precedente[k][j][1])
                             nb_points += 1
                     if x+y == 0:
                         x = y = 5000
-                    liste_un_joueur_avec_vals_moyennes_deplacements.append((x+y)/nb_points) #on aurait pu faire sqrt((x²+y²)/nb_points) mais je ne pense pas que ce soit utile
+                    liste_un_joueur_avec_vals_moyennes_deplacements.append((x+y)/nb_points) #we could use sqrt((x²+y²)/nb_points) 
                 liste_joueurs_avec_vals_moyennes_deplacements.append(liste_un_joueur_avec_vals_moyennes_deplacements)
             if liste_joueurs_avec_vals_moyennes_deplacements[0] != []:
                 position_des_joueurs = []
@@ -133,10 +134,13 @@ def openpose_json2list_tracking(results):
 
 
             
-            for i in position_des_joueurs: #mettre un dictionnaire pour traiter les cas où les personnes ne sont plus détectées/
+            for i in position_des_joueurs:
                 val_precedente[i] = val_actuelle[position_des_joueurs.index(i)]
         else:
             liste_sortie.append([])
-    #print(liste_sortie)
+    
     return(liste_sortie)
 
+
+if __name__ == "__main__":
+    create_mmpose_files(os.path.join("example/set_1_point_8.mp4"))
