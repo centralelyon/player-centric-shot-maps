@@ -40,14 +40,14 @@ To generate pose estimation on a table tennis point video:
 
 This function create a csv file with all players positions and with a tracking provided  
 the file looks like this:  
-<img src="images/csv_pose.png" alt="csv file" width="1100">
+<img src="images/csv_pose.png" alt="csv file" width="500">
 
 Genrate position file:
 - Use `create_csv_position_using_feet()` from [utils.py](https://github.com/centralelyon/tt-player-centric/blob/main/utils.py)
 
 This function create a csv file with all players positions and with a tracking provided  
 the file looks like this:  
-<img src="images/csv_position.png" alt="csv file" width="1100">
+<img src="images/csv_position.png" alt="csv file" width="500">
 
 ### 3. Calibrate camera
 If you we don't know intrisec camera parameters, we can estimate them with OpenCv functions such as `slovepnp()` or `calibrateCamera()` ([doc](https://docs.opencv.org/4.x/dc/dbb/tutorial_py_calibration.html). These functions can be used directly inside blender with https://rtstudios.gumroad.com/l/camera_pnpoint 
