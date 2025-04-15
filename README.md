@@ -50,7 +50,7 @@ the file looks like this:
 <img src="images/csv_position.png" alt="csv file" width="1100">
 
 ### 3. Calibrate camera
-If you we don't know intrisec camera parameters, we can estimate them with OpenCv functions such as `slovepnp()` or `calibrateCamera()`. These functions can be used directly inside blender with https://rtstudios.gumroad.com/l/camera_pnpoint 
+If you we don't know intrisec camera parameters, we can estimate them with OpenCv functions such as `slovepnp()` or `calibrateCamera()` ([doc](https://docs.opencv.org/4.x/dc/dbb/tutorial_py_calibration.html). These functions can be used directly inside blender with https://rtstudios.gumroad.com/l/camera_pnpoint 
 To estimate these parameters, we can use 6 known points from the table whose correspondences in the 3d scene are known
 <img src="images/table_6_points.png" alt="Calibration with 6 points" width="1100">
 We need to create a json with these parameters (exemple: https://github.com/centralelyon/tt-player-centric/blob/main/exemple/PRITHIKA-PAVADE_vs_SIBEL-ALTINKAYA_camera.json)  
@@ -85,6 +85,10 @@ Exemple of new referentiel points ploted:
 
 ## 6. Miscellaneous
 [BlenderScene.py](https://github.com/centralelyon/tt-player-centric/blob/main/BlenderScene.py) is to create 3D scene in Blender.  
-Load the file in blender and execute the code
+Load the file in blender  
+You need to change paths:
+- chemin_pose_3d
+- chemin_pose_balle_3d
+Execute the code
 <img src="images/blender_scene.png" alt="Blender scene" width="1100">
 
