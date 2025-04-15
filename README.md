@@ -26,6 +26,7 @@ To create this scene, we used the API of Blender bpy. We provided a script to cr
 
 ## Steps
 ### 1. Install
+- Python 3.11 requiered for bpy
 - Download MMPose https://github.com/open-mmlab/mmpose
 - ```bash
    pip install -r requirements.txt
@@ -36,10 +37,9 @@ To create this scene, we used the API of Blender bpy. We provided a script to cr
 ### 2. Pose estimation
 To estimate player positions we use position of players' feet by using pose estimation with mmpose 
 To generate pose estimation on a table tennis point video:  
-- Use `lancer_mmpose_sur_video()` from [test_mmpose_inference.py](https://github.com/centralelyon/tt-player-centric/blob/main/test_mmpose_inference.py)
+- Use `create_mmpose_files()` from [mmpose_inference.py](https://github.com/centralelyon/tt-player-centric/blob/main/mmpose_inference.py)
   - Params:
-    - video_path
-    - output_csv
+    - video_path  
 (We need a video of a single camera with only one point)
 
 This function create a csv file with all players positions and with a tracking provided
