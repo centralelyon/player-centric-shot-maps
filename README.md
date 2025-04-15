@@ -1,3 +1,7 @@
+### Ajouter les info sur les fichier nécessaires
+
+
+
 # Player Centric Referentiel
 This repo explain how to generate 3D scene of table tennis points.
 To create this scene, we used the API of Blender bpy. We provided a script to create scene with the table, players and ball position for each frame and the camera. We also provided a script to create a video of the point generated in the 3D scene.  
