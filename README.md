@@ -79,7 +79,7 @@ To create the csv with coordinates in the new referential we need to use `create
 example:  
 `create_csv_new_ref("example/set_1_point_8_annotation_enrichi.csv","example/set_1_point_8_position_ordonne.csv")`
 
-exemple of new referential points plotted:
+example of new referential points plotted:
 <img src="images/new_ref.png" alt="New referentiel points" width="1100">
 
 
