@@ -88,7 +88,7 @@ example of new referentiel points ploted:
 Load the file in blender  
 You need to change paths:
 - chemin_pose_3d
-- chemin_pose_balle_3d
-Execute the code
+- chemin_pose_balle_3d  
+Execute the code  
 <img src="images/blender_scene.png" alt="Blender scene" width="1100">
 
