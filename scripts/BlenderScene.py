@@ -263,9 +263,9 @@ def animation(scene):
     return sphere
     
 if __name__ == "__main__":
-    #chemin_pose_3d = os.path.join("example","set_1_point_0_pose_3d_mmpose.csv")
-    chemin_pose_3d = os.path.join("example","set_1_point_0_pose_2d_mmpose_convertion_3d.csv")
-    chemin_pose_balle_3d = os.path.join("example","set_1_point_0_zone_joueur_avec_pos_balle_3D.csv")
+    #chemin_pose_3d = os.path.join("example","/set_1_point_0/position_files/set_1_point_0_pose_3d_mmpose.csv")
+    chemin_pose_3d = os.path.join("example","set_1_point_0","position_files","set_1_point_0_pose_2d_mmpose_convertion_3d.csv")
+    chemin_pose_balle_3d = os.path.join("example","set_1_point_0","position_files","set_1_point_0_zone_joueur_avec_pos_balle_3D.csv")
     fichier_lecture = open(chemin_pose_3d,"r")
     csv_reader = csv.reader(fichier_lecture, delimiter=',')
     next(csv_reader)

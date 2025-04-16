@@ -374,8 +374,8 @@ def create_video_3d(chemin_pose_3d,chemin_pose_balle_3d,chemin_json_camera,dossi
 
    
 if __name__ == "__main__":
-    create_video_3d(os.path.join("example/set_1_point_8_position_joueur_grace_pieds.csv"),
-                    os.path.join("example/set_1_point_8_zone_joueur_avec_pos_balle_3D.csv"),
+    create_video_3d(os.path.join("example/set_1_point_8/position_files/set_1_point_8_position_joueur_grace_pieds.csv"),
+                    os.path.join("example/set_1_point_8/position_files/set_1_point_8_zone_joueur_avec_pos_balle_3D.csv"),
                     os.path.join("example/PRITHIKA-PAVADE_vs_SIBEL-ALTINKAYA_camera.json"),
                     os.path.join(os.getcwd(),"example","images"),
                     os.path.join("example/set_1_point_8_annotation_enrichi.csv"),

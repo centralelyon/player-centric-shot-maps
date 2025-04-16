@@ -143,4 +143,4 @@ def openpose_json2list_tracking(results):
 
 
 if __name__ == "__main__":
-    create_mmpose_files(os.path.join("example/set_1_point_8.mp4"))
+    create_mmpose_files(os.path.join("example/set_1_point_8/set_1_point_8.mp4"))
