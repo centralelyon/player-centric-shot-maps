@@ -92,3 +92,7 @@ You need to change path:
 Execute the code  
 <img src="images/blender_scene.png" alt="Blender scene" width="1100">
 
+
+If you want to create a 3D scene in Blender with only the table, with provide a code [BlenderSceneTable.py](https://github.com/centralelyon/player-centric-shot-maps/blob/main/scripts/BlenderSceneTable.py)  
+<img src="images/blender_scene_table.png" alt="Blender table scene" width="1100">
+
