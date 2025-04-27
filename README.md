@@ -94,5 +94,5 @@ Execute the code
 
 
 If you want to create a 3D scene in Blender with only the table, with provide a code [BlenderSceneTable.py](https://github.com/centralelyon/player-centric-shot-maps/blob/main/scripts/BlenderSceneTable.py)  
-<img src="images/blender_scene_table.jpg" alt="Blender table scene" width="1100">
+<img src="images/scene_blender_table.jpg" alt="Blender table scene" width="1100">
 
